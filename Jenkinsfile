@@ -1,4 +1,17 @@
 node('node1'){
+stage('CodeCheckout'){
+sh "find ."
+sh "find . | sed -e '1d' | xargs rm -rf"
+if (env.TAG_NAME ==~ '.*'){
+env.branch_name = "refs/tags/${env.TAG_NAME}"
+}
+else{
+env.branch_name = "${env.BRANCH_NAME}"
+}
+checkout([$class: 'GitSCM',
+branches: [[name: "${branch_name}"]],
+userRemoteConfigs: [[url: "https://github.com/devps23/expense-backend"]]]
+)}
 if (env.TAG_NAME ==~ '.*') {
 stage('Build Code'){
 print 'OK'
