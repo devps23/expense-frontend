@@ -10,7 +10,7 @@ env.branch_name = "${env.BRANCH_NAME}"
 }
 checkout([$class: 'GitSCM',
 branches: [[name: "${branch_name}"]],
-userRemoteConfigs: [[url: "https://github.com/devps23/expense-backend"]]]
+userRemoteConfigs: [[url: "https://github.com/devps23/expense-frontend"]]]
 )}
 if (env.TAG_NAME ==~ '.*') {
 stage('Build Code'){
